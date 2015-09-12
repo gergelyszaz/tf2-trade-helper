@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by mad on 9/12/2015.
@@ -40,7 +41,7 @@ public class ScrapTf implements TradeBot {
                             //System.out.println(line);
                             item_found_state++;
 
-                            item=new Item();
+                            item=new Item(getName());
                             item.name=line.trim();
                             items.put(item.name,item);
                     }
@@ -71,23 +72,11 @@ public class ScrapTf implements TradeBot {
                             stock = Integer.parseInt(stockMax[0]);
                             max = Integer.parseInt((stockMax[1]));
                         }
+                        item.stock=stock;
+                        item.max=max;
 
 
                         item_found_state = 0;
-
-                        /*
-                        int profit=item.buyPrice-items.get(item.name).sellPrice;
-
-                        if( profit>0 && (max-stock) >0 )
-                        {
-                            System.out.println("Scrap.tf will buy "+(max-stock)+" pieces of "+item.name+ " earning "+profit/100.00+ " each. (Buy/Sell): "+item.buyPrice+"/"+wasdabot.get(item.name).sellPrice);
-                        }
-
-                        profit=items.get(item.name).buyPrice-item.sellPrice;
-                        if(profit>0 && stock >0){
-                            System.out.println("Wasdabot will buy "+(stock)+" pieces of "+item.name+ " earning "+profit/100.00+ " each. (Buy/Sell): "+wasdabot.get(item.name).buyPrice+"/"+item.sellPrice);
-                        }
-                        //System.out.println("Will buy: " + (max - stock));*/
                     }
 
                     break;
@@ -102,11 +91,21 @@ public class ScrapTf implements TradeBot {
 
     @Override
     public void ListItems() {
-        System.out.println("Scrap.tf");
+        System.out.println(getName());
         for(Map.Entry entry: items.entrySet())
         {
             System.out.println(entry.getValue());
         }
+    }
+
+    @Override
+    public String getName() {
+        return "Scrap.tf";
+    }
+
+    @Override
+    public Set<String> getItemNames() {
+        return items.keySet();
     }
 
 

@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by mad on 9/12/2015.
@@ -82,7 +83,7 @@ public class WasdaBot implements TradeBot {
                 }
 
 
-                Item item = new Item();
+                Item item = new Item(getName());
                 item.name = name;
                 item.buyPrice = buyPrice;
                 item.sellPrice = sellPrice;
@@ -103,10 +104,20 @@ public class WasdaBot implements TradeBot {
 
     @Override
     public void ListItems() {
-        System.out.println("Wasdabot");
+        System.out.println(getName());
         for(Map.Entry entry: wasdabot.entrySet())
         {
             System.out.println(entry.getValue());
         }
+    }
+
+    @Override
+    public String getName() {
+        return "Wasdabot";
+    }
+
+    @Override
+    public Set<String> getItemNames() {
+        return wasdabot.keySet();
     }
 }

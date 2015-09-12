@@ -5,16 +5,24 @@ import java.util.Objects;
 /**
  * Created by mad on 9/12/2015.
  */
-public class Item{
+public class Item implements Comparable<Item>{
     public static int KEY_PRICE=16;
     public int buyPrice;
     public int sellPrice;
-
+    public String origin;
     public String name;
+    public int stock;
+    public int max;
+
+    public Item(String origin)
+    {
+        this.origin=origin;
+        stock=1; max=2;
+    }
 
     @Override
     public String toString() {
-        return name+ " | "+buyPrice+ " | "+sellPrice;
+        return name+ " | "+buyPrice+ " | "+sellPrice+" | "+origin;
     }
 
     public static int ParsePrice(String line)
@@ -47,5 +55,13 @@ public class Item{
             }
         }
         return ret;
+    }
+
+    @Override
+    public int compareTo(Item item) {
+        if(!this.name.equalsIgnoreCase(item.name)) return 0;
+        int buy=this.buyPrice-item.sellPrice;
+        int sell=item.buyPrice-this.sellPrice;
+        return buy>0?buy:sell>0?-sell:0;
     }
 }

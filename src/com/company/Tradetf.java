@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by mad on 9/12/2015.
@@ -35,13 +36,12 @@ public class Tradetf implements TradeBot {
                 buy = true;
 
             if (line.contains("$scope.sellers = ") || line.contains("$scope.buyers = ")) {
-                System.out.println(line.length());
                 line = line.replace("$scope.sellers = ", "");
                 line = line.trim();
                 String[] itemStrings = line.split("\\}, \\{");
                 for (String itemString : itemStrings) {
-                    Item item = new Item();
-                    item.buyPrice = 999999999;
+                    Item item = new Item(getName());
+                    item.buyPrice = 0;
                     item.sellPrice = 999999999;
                     itemString = itemString.substring(itemString.lastIndexOf("\"price\": {"));
                     itemString = itemString.replace("\"price\": {", "");
@@ -68,14 +68,24 @@ public class Tradetf implements TradeBot {
 
     @Override
     public Item getItem(String name) {
-        return null;
+        return items.get(name);
     }
 
     @Override
     public void ListItems() {
-        System.out.println("Trade.tf");
+        System.out.println(getName());
         for (Map.Entry entry : items.entrySet()) {
             System.out.println(entry.getValue());
         }
+    }
+
+    @Override
+    public String getName() {
+        return "Trade.tf";
+    }
+
+    @Override
+    public Set<String> getItemNames() {
+        return items.keySet();
     }
 }
