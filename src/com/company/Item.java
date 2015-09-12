@@ -9,6 +9,7 @@ public class Item{
     public static int KEY_PRICE=16;
     public int buyPrice;
     public int sellPrice;
+
     public String name;
 
     @Override
