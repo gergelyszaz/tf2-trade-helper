@@ -41,13 +41,14 @@ public class Main {
                     items.add(bot.getItem(name));
                 }
             }
-            if(items.size()>1) {
+
+            if(items.size()>=1) {
 
 
             //    System.out.println(toBuy + " " + toSell);
                 if (toBuy.sellPrice < toSell.buyPrice) {
                     if(toBuy.stock>0&&toSell.stock<toSell.max)
-                    if(toBuy.origin!="Wasdabot")
+                    if(toBuy.origin!="Wasdabot"||name.contains("Lime"))
                     System.out.println("Buy "+toBuy.stock+" " + name + " at " + toBuy.origin + " for " + toBuy.sellPrice / 100.00 + " and sell at " + toSell.origin + " for " + toSell.buyPrice / 100.00);
                 }
             }
