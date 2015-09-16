@@ -12,8 +12,11 @@ import java.util.Set;
 /**
  * Created by mad on 9/12/2015.
  */
-public class WasdaBot implements TradeBot {
-    HashMap<String, Item> wasdabot=new HashMap<>();
+public class WasdaBot extends AbstractTradeBot{
+    public WasdaBot() {
+        super("Wasda");
+    }
+
     @Override
     public void Build(URL url) throws IOException {
 
@@ -33,7 +36,23 @@ public class WasdaBot implements TradeBot {
                 String name = items[1].replace("<br />", "");
                 name = name.replace("</div>", "");
                 name = name.substring(10);
+                if(name.contains(";"))
+                {
+                    String[] skinned_wep=name.split(" ");
+                    name="";
+                    for(String s:skinned_wep)
+                    {
+                        if(!s.contains(";"))
+                        {
+                            name+=" "+s;
+                        }
+                        else{
+                            name+=";";
+                        }
 
+                    }
+                    name=name.trim();
+                }
                 int buyPrice = 0;
 
                 String[] buyS = buyString.split(" \\+ ");
@@ -88,36 +107,12 @@ public class WasdaBot implements TradeBot {
                 item.buyPrice = buyPrice;
                 item.sellPrice = sellPrice;
 
-                if (!wasdabot.containsKey(item.name)) {
-                    wasdabot.put(item.name, item);
+                if (!this.items.containsKey(item.name)) {
+                    this.items.put(item.name, item);
                 }
                 //System.out.println(item);
             }
         }
         is.close();
-    }
-
-    @Override
-    public Item getItem(String name) {
-        return wasdabot.get(name);
-    }
-
-    @Override
-    public void ListItems() {
-        System.out.println(getName());
-        for(Map.Entry entry: wasdabot.entrySet())
-        {
-            System.out.println(entry.getValue());
-        }
-    }
-
-    @Override
-    public String getName() {
-        return "Wasdabot";
-    }
-
-    @Override
-    public Set<String> getItemNames() {
-        return wasdabot.keySet();
     }
 }

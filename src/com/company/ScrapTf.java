@@ -12,8 +12,11 @@ import java.util.Set;
 /**
  * Created by mad on 9/12/2015.
  */
-public class ScrapTf implements TradeBot {
-    public HashMap<String, Item> items=new HashMap<>();
+public class ScrapTf extends AbstractTradeBot {
+
+    public ScrapTf() {
+        super("Scraptf");
+    }
 
 
     @Override
@@ -28,15 +31,14 @@ public class ScrapTf implements TradeBot {
         Item item=null;
         while ((line = br.readLine()) != null) {
             line = line.trim();
-
+            line=line.replaceAll("<i18n>","").replaceAll("</i18n>","");
 
             switch (item_found_state) {
                 case 0:
-                    if(line.contains("data-original-title=\"\"></td>"))
-                    {
-                        line=br.readLine();
-                        line=line.replace("</td>","");
-                        line=line.replace("<td>","");
+                    if(line.contains("data-original-title=\"\"></td>")) {
+                        line = br.readLine();
+                        line=line.replace("</td>","").replace("<td>", "");
+
 
                             //System.out.println(line);
                             item_found_state++;
@@ -83,30 +85,5 @@ public class ScrapTf implements TradeBot {
             }}
         is.close();
     }
-
-    @Override
-    public Item getItem(String name) {
-        return items.get(name);
-    }
-
-    @Override
-    public void ListItems() {
-        System.out.println(getName());
-        for(Map.Entry entry: items.entrySet())
-        {
-            System.out.println(entry.getValue());
-        }
-    }
-
-    @Override
-    public String getName() {
-        return "Scrap.tf";
-    }
-
-    @Override
-    public Set<String> getItemNames() {
-        return items.keySet();
-    }
-
 
 }

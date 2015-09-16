@@ -14,7 +14,8 @@ import java.util.*;
 
 public class Main {
 
-    public static void Comparer(TradeBot[] bots)
+
+    public static void Comparer(List<TradeBot> bots)
     {
         Set<String> keys=new HashSet<>();
 
@@ -46,9 +47,12 @@ public class Main {
 
 
             //    System.out.println(toBuy + " " + toSell);
-                if (toBuy.sellPrice < toSell.buyPrice) {
+                if ((toSell.buyPrice-toBuy.sellPrice)>=20) {
                     if(toBuy.stock>0&&toSell.stock<toSell.max)
-                    if(toBuy.origin!="Wasdabot"||name.contains("Lime"))
+                        if(toSell.origin!="WareHouse")
+
+                            //if(toBuy.sellPrice>=800)
+                    if(toBuy.origin!="Wasda"||name.contains("Lime"))
                     System.out.println("Buy "+toBuy.stock+" " + name + " at " + toBuy.origin + " for " + toBuy.sellPrice / 100.00 + " and sell at " + toSell.origin + " for " + toSell.buyPrice / 100.00);
                 }
             }
@@ -56,17 +60,31 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        TradeBot[] bots=new TradeBot[3];
-        bots[0]=new ScrapTf();
-        bots[1]=new WasdaBot();
-        bots[2]=new Tradetf();
+        List<TradeBot> bots=new ArrayList<>();
+        TradeBot bot;
+        
+
         try {
-            bots[0].Build(new URL(args[0]));
-            bots[1].Build(new URL("http://www.tf2outpost.com/trade/26599888"));
-            bots[2].Build(new URL("http://www.trade.tf/mybots/index"));//"file:///D://tradetf.txt"));
-            for(TradeBot bot:bots)
+            bots.add(bot=new ScrapTf());
+            bot.Build(new URL(args[0]));
+
+            bots.add(bot = new WasdaBot());
+            bot.Build(new URL("http://www.tf2outpost.com/trade/26599888"));
+
+            bots.add(bot = new Tradetf());
+            bot.Build(new URL("http://www.trade.tf/mybots/index"));//"file:///D://tradetf.txt"));
+
+            bots.add(bot = new ScraptfTrade());
+            bot.Build(new URL("file:///D://strangebot.txt"));
+
+            bots.add(bot = new Tf2Vendor());
+            bot.Build(new URL("https://tf2vendor.com/browse"));
+
+            bots.add(bot = new WareHouse());
+            //bot.Build(new URL("https://www.tf2wh.com/priceguide"));
+            for(TradeBot b:bots)
             {
-               // bot.ListItems();
+               b.ListItems();
             }
             Comparer(bots);
 

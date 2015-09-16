@@ -18,6 +18,8 @@ public class Item implements Comparable<Item>{
     {
         this.origin=origin;
         stock=1; max=2;
+        buyPrice=0;
+        sellPrice=999999999;
     }
 
     @Override

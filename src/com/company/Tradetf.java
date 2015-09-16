@@ -14,8 +14,12 @@ import java.util.Set;
 /**
  * Created by mad on 9/12/2015.
  */
-public class Tradetf implements TradeBot {
-    public HashMap<String, Item> items = new HashMap<>();
+public class Tradetf extends AbstractTradeBot {
+
+
+    public Tradetf() {
+        super("Trade.tf");
+    }
 
     @Override
     public void Build(URL url) throws IOException {
@@ -66,26 +70,4 @@ public class Tradetf implements TradeBot {
 
     }
 
-    @Override
-    public Item getItem(String name) {
-        return items.get(name);
-    }
-
-    @Override
-    public void ListItems() {
-        System.out.println(getName());
-        for (Map.Entry entry : items.entrySet()) {
-            System.out.println(entry.getValue());
-        }
-    }
-
-    @Override
-    public String getName() {
-        return "Trade.tf";
-    }
-
-    @Override
-    public Set<String> getItemNames() {
-        return items.keySet();
-    }
 }
