@@ -41,8 +41,10 @@ public class WareHouse extends AbstractTradeBot {
                 line=br.readLine();
                 line=line.substring(line.indexOf('>')+1,line.lastIndexOf('<'));
                 String[] stock=line.split("/");
-                item.stock=Integer.parseInt(stock[0]);
+                item.stock=0;
+                item.temp=Integer.parseInt(stock[0]);
                 item.max = Integer.parseInt(stock[1]);
+                if(item.max==item.temp) item.max-=item.temp;
 
                 line=br.readLine();
                 line=line.substring(line.indexOf('>')+1,line.lastIndexOf('<')).replace(",", "");
@@ -54,5 +56,21 @@ items.put(item.name,item);
             }
         }
 
+        url=new URL("https://www.tf2wh.com/allitems");
+        httpcon = (HttpURLConnection) url.openConnection();
+        httpcon.addRequestProperty("User-Agent", "Mozilla/4.0");
+        is = httpcon.getInputStream();  // throws an IOException
+        br = new BufferedReader(new InputStreamReader(is));
+        line="";
+        while ((line = br.readLine()) != null) {
+            if (line.contains("data-name=")) {
+                String name=line.split("data-name=\"")[1].split("\"")[0];
+                Item item=items.get(name);
+                if(item!=null)
+                {
+                    item.stock=item.temp;
+                }
+            }
+        }
     }
 }

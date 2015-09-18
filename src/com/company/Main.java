@@ -51,7 +51,7 @@ public class Main {
                     if(toBuy.stock>0&&toSell.stock<toSell.max)
                         if(toSell.origin!="WareHouse")
 
-                            //if(toBuy.sellPrice>=800)
+//                            if(toBuy.sellPrice>=800)
                     if(toBuy.origin!="Wasda"||name.contains("Lime"))
                     System.out.println("Buy "+toBuy.stock+" " + name + " at " + toBuy.origin + " for " + toBuy.sellPrice / 100.00 + " and sell at " + toSell.origin + " for " + toSell.buyPrice / 100.00);
                 }
@@ -81,7 +81,7 @@ public class Main {
             bot.Build(new URL("https://tf2vendor.com/browse"));
 
             bots.add(bot = new WareHouse());
-            //bot.Build(new URL("https://www.tf2wh.com/priceguide"));
+            bot.Build(new URL("https://www.tf2wh.com/priceguide"));
             for(TradeBot b:bots)
             {
                b.ListItems();

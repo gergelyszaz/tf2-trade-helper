@@ -13,6 +13,7 @@ public class Item implements Comparable<Item>{
     public String name;
     public int stock;
     public int max;
+    public int temp; //for temporary stuff
 
     public Item(String origin)
     {
