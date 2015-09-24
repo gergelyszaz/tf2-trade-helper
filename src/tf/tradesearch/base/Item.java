@@ -1,6 +1,4 @@
-package com.company;
-
-import java.util.Objects;
+package tf.tradesearch.base;
 
 /**
  * Created by mad on 9/12/2015.
@@ -14,6 +12,8 @@ public class Item implements Comparable<Item>{
     public int stock;
     public int max;
     public int temp; //for temporary stuff
+    public boolean buy=false;
+    public boolean sell=false;
 
     public Item(String origin)
     {

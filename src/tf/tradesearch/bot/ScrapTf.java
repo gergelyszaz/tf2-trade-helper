@@ -1,27 +1,30 @@
-package com.company;
+package tf.tradesearch.bot;
+
+import tf.tradesearch.base.AbstractTradeBot;
+import tf.tradesearch.base.Item;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by mad on 9/12/2015.
  */
 public class ScrapTf extends AbstractTradeBot {
 
-    public ScrapTf() {
-        super("Scraptf");
+    public ScrapTf(URL url) {
+        super("Scraptf",url);
     }
 
 
     @Override
-    public void Build(URL url) throws IOException {
-        InputStream is = url.openStream();  // throws an IOException
+    public void Build() throws IOException {
+        HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
+        httpcon.addRequestProperty("User-Agent", "Mozilla/4.0");
+        InputStream is = httpcon.getInputStream();  // throws an IOException
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line="";
 

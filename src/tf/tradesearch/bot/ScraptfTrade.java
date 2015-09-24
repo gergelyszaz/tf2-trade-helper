@@ -1,4 +1,7 @@
-package com.company;
+package tf.tradesearch.bot;
+
+import tf.tradesearch.base.AbstractTradeBot;
+import tf.tradesearch.base.Item;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,12 +13,12 @@ import java.net.URL;
  * Created by mad on 2015. 09. 14..
  */
 public class ScraptfTrade extends AbstractTradeBot {
-    public ScraptfTrade() {
-        super("Scrap.tf");
+    public ScraptfTrade(URL url) {
+        super("Scrap.tf",url);
     }
 
     @Override
-    public void Build(URL url) throws IOException {
+    public void Build() throws IOException {
         InputStream is = url.openStream();  // throws an IOException
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line="";

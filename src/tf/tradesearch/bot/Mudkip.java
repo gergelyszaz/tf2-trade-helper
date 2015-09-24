@@ -1,24 +1,24 @@
-package com.company;
+package tf.tradesearch.bot;
+
+import tf.tradesearch.base.AbstractTradeBot;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Created by mad on 2015. 09. 14..
  */
 public class Mudkip extends AbstractTradeBot {
 
-    public Mudkip() {
-        super("Mudkip");
+    public Mudkip(URL url) {
+        super("Mudkip",url);
     }
 
     @Override
-    public void Build(URL url) throws IOException {
+    public void Build() throws IOException {
         InputStream is = url.openStream();  // throws an IOException
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line = "";

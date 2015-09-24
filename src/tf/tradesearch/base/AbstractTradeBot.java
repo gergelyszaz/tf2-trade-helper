@@ -1,4 +1,4 @@
-package com.company;
+package tf.tradesearch.base;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,14 +9,24 @@ import java.util.Set;
 /**
  * Created by mad on 2015. 09. 14..
  */
-public abstract class AbstractTradeBot implements TradeBot{
-    protected HashMap<String, Item> items=new HashMap<>();
-    private String name;
-    public AbstractTradeBot(String name){this.name=name;}
+public abstract class AbstractTradeBot implements TradeBot {
+    protected HashMap<String, Item> items = new HashMap<>();
+    protected String name;
+    protected URL url;
+
+    public AbstractTradeBot(String name, URL url) {
+        this.name = name;
+        this.url = url;
+    }
 
 
-    @Override
-    public abstract void Build(URL url) throws IOException;
+    public void Refresh() throws IOException {
+        items.clear();
+        Build();
+    }
+
+    protected abstract void Build() throws IOException;
+
 
     @Override
     public Item getItem(String name) {
@@ -26,8 +36,7 @@ public abstract class AbstractTradeBot implements TradeBot{
     @Override
     public void ListItems() {
         System.out.println(getName());
-        for(Map.Entry entry: items.entrySet())
-        {
+        for (Map.Entry entry : items.entrySet()) {
             System.out.println(entry.getValue());
         }
     }

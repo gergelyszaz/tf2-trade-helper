@@ -1,24 +1,24 @@
-package com.company;
+package tf.tradesearch.bot;
+
+import tf.tradesearch.base.AbstractTradeBot;
+import tf.tradesearch.base.Item;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by mad on 9/12/2015.
  */
-public class WasdaBot extends AbstractTradeBot{
-    public WasdaBot() {
-        super("Wasda");
+public class WasdaBot extends AbstractTradeBot {
+    public WasdaBot(URL url) {
+        super("Wasda",url);
     }
 
     @Override
-    public void Build(URL url) throws IOException {
+    public void Build() throws IOException {
 
 
         InputStream is = url.openStream();  // throws an IOException

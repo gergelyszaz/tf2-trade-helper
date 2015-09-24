@@ -1,4 +1,7 @@
-package com.company;
+package tf.tradesearch.bot;
+
+import tf.tradesearch.base.AbstractTradeBot;
+import tf.tradesearch.base.Item;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,12 +14,12 @@ import java.net.URL;
  * Created by mad on 2015. 09. 15..
  */
 public class Tf2Vendor extends AbstractTradeBot {
-    public Tf2Vendor() {
-        super("Tf2Vendor");
+    public Tf2Vendor(URL url) {
+        super("Tf2Vendor",url);
     }
 
     @Override
-    public void Build(URL url) throws IOException {
+    public void Build() throws IOException {
         HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
         httpcon.addRequestProperty("User-Agent", "Mozilla/4.0");
         InputStream is = httpcon.getInputStream();  // throws an IOException
