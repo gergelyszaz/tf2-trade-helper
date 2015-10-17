@@ -1,10 +1,7 @@
-package tf.tradesearch.base;
-
-import tf.tradesearch.bot.*;
+package main.java.tradesearch.base;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.*;
 
 /**
@@ -13,6 +10,8 @@ import java.util.*;
 public class BotManager {
     private HashMap<String, List<Item>> items=new HashMap<>();
     private List<TradeBot> bots = new ArrayList<>();
+
+
 
     public List<List<Item>> Search(String name) {
         List<List<Item>> ret = new ArrayList<>();
@@ -47,9 +46,9 @@ public class BotManager {
                 if (item != null) {
                     if (toBuy == null) toBuy = item;
                     if (toSell == null) toSell = item;
-                    if (toBuy.sellPrice > item.sellPrice)
+                    if (toBuy.sellPrice > item.sellPrice && item.stock>0)
                         toBuy = item;
-                    if (toSell.buyPrice < item.buyPrice)
+                    if (toSell.buyPrice < item.buyPrice && item.max>item.stock)
                         toSell = item;
 
                 }
@@ -61,13 +60,13 @@ public class BotManager {
 
                 //    System.out.println(toBuy + " " + toSell);
                 if (toSell.buyPrice > 0)
-//                if ((toSell.buyPrice/(float)toBuy.sellPrice)>=1.1)
+                if ((toSell.buyPrice/(float)toBuy.sellPrice)>=1.0)
                     if ((toSell.buyPrice - toBuy.sellPrice) >= 20)
                         if (toBuy.stock > 0 && toSell.stock < toSell.max)
-                            if (toSell.origin != "WareHouse")
+                         if (toSell.origin != "WareHouse")
 
                                 //                      if(toBuy.sellPrice<=2400)
-                                if (toBuy.origin != "Wasda" || name.contains("Lime"))
+                           //     if (toBuy.origin != "Wasda")
                                     System.out.println("Buy " + toBuy.stock + " " + name + " at " + toBuy.origin + " for " + toBuy.sellPrice / 100.00 + " and sell at " + toSell.origin + " for " + toSell.buyPrice / 100.00);
 
             }

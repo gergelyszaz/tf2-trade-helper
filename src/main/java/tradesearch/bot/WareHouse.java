@@ -1,7 +1,7 @@
-package tf.tradesearch.bot;
+package main.java.tradesearch.bot;
 
-import tf.tradesearch.base.AbstractTradeBot;
-import tf.tradesearch.base.Item;
+import main.java.tradesearch.base.AbstractTradeBot;
+import main.java.tradesearch.base.Item;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package tf.tradesearch.base;
+package main.java.tradesearch.base;
 
 /**
  * Created by mad on 9/12/2015.

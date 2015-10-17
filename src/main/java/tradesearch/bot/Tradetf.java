@@ -1,7 +1,7 @@
-package tf.tradesearch.bot;
+package main.java.tradesearch.bot;
 
-import tf.tradesearch.base.AbstractTradeBot;
-import tf.tradesearch.base.Item;
+import main.java.tradesearch.base.Item;
+import main.java.tradesearch.base.AbstractTradeBot;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,7 +50,8 @@ public class Tradetf extends AbstractTradeBot {
                     itemString = itemString.replace("\"price\": {", "");
                     String[] itemS = itemString.split("\\}, ");
                     item.name = itemS[1].replace("\"name\": ", "").replace("\"", "").replace("}];","").trim();
-                    String[] price = itemS[0].replace("\"keys\":", "").replace("\"refs\":", "").replace(".0", "00").replace(".", "").split(",");
+                    String[] price = itemS[0].replace("\"keys\":", "").replace("\"refs\":", "").replace(".0", "00").replace(".", "").replace("null","0").split(",");
+                    //System.out.println(price[0]+";"+price[2]);
                     int sum = Integer.parseInt(price[0].trim()) * Item.KEY_PRICE + Integer.parseInt(price[2].trim());
                     if (items.containsKey(item.name)) {
                         item = items.get(item.name);

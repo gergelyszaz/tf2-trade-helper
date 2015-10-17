@@ -1,7 +1,7 @@
-package tf.tradesearch.bot;
+package main.java.tradesearch.bot;
 
-import tf.tradesearch.base.AbstractTradeBot;
-import tf.tradesearch.base.Item;
+import main.java.tradesearch.base.Item;
+import main.java.tradesearch.base.AbstractTradeBot;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -106,6 +106,7 @@ public class WasdaBot extends AbstractTradeBot {
                 item.name = name;
                 item.buyPrice = buyPrice;
                 item.sellPrice = sellPrice;
+                item.stock=0;
 
                 if (!this.items.containsKey(item.name)) {
                     this.items.put(item.name, item);

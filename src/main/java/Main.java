@@ -1,13 +1,11 @@
-package com.company;
+package main.java;
 
 
 
-import tf.tradesearch.base.BotManager;
-import tf.tradesearch.base.Item;
-import tf.tradesearch.base.TradeBot;
-import tf.tradesearch.bot.*;
+import main.java.tradesearch.base.BotManager;
+import main.java.tradesearch.base.Item;
+import main.java.tradesearch.bot.*;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;

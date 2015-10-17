@@ -1,4 +1,4 @@
-package tf.tradesearch.base;
+package main.java.tradesearch.base;
 
 import java.io.IOException;
 import java.util.Set;
