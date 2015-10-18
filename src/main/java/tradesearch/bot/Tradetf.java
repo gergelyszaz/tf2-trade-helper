@@ -32,6 +32,7 @@ public class Tradetf extends AbstractTradeBot {
 
         String line = "";
         while ((line = br.readLine()) != null) {
+            line=line.replace("\\u00dc","U");
             boolean buy = false;
             if (line.contains("$scope.sellers = "))
                 buy = false;

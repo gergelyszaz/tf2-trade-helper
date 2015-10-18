@@ -25,6 +25,21 @@ public class BotManager {
         return ret;
     }
 
+    public void SearchAndPrint(String name)
+    {
+        System.out.println();
+        for(List<Item> l: Search(name)){
+            System.out.print(l.get(0).name+" | ");
+            for(Item i:l)
+            {
+                System.out.print(
+                        i.origin+": "+i.sellPrice+"/"+i.buyPrice+" | "
+                );
+            }
+            System.out.println();
+        }
+    }
+
 
     public void AddBot(TradeBot bot) {
         bots.add(bot);
@@ -61,7 +76,7 @@ public class BotManager {
                 //    System.out.println(toBuy + " " + toSell);
                 if (toSell.buyPrice > 0)
                 if ((toSell.buyPrice/(float)toBuy.sellPrice)>=1.0)
-                    if ((toSell.buyPrice - toBuy.sellPrice) >= 20)
+                    if ((toSell.buyPrice - toBuy.sellPrice) >= 10)
                         if (toBuy.stock > 0 && toSell.stock < toSell.max)
                          if (toSell.origin != "WareHouse")
 

@@ -36,6 +36,9 @@ public class WareHouse extends AbstractTradeBot {
                 line=line.replace(" [FT]", "; Field-Tested");
                 line=line.replace(" [MW]","; Minimal Wear");
                 line=line.replace(" [WW]","; Well-Worn");
+                line=line.replace("Part: ","Strange Part: ");
+                line=line.replace("Cosmetic Strange","Strange Cosmetic");
+                line=line.replace("\u0102\u015b","U");
 
                 item.name=line;
 

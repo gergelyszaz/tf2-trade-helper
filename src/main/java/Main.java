@@ -26,15 +26,7 @@ public class Main {
         bm.Refresh();
         bm.Compare();
 
-        for(List<Item> l: bm.Search("tour of duty")){
-            System.out.print(l.get(0).name+":");
-            for(Item i:l)
-            {
-                System.out.print(
-                    i.origin+": "+i.sellPrice+" | "
-                );
-            }
-        }
+        bm.SearchAndPrint("apoco");
 
 
     }
