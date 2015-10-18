@@ -30,7 +30,7 @@ public class WareHouse extends AbstractTradeBot {
             {
                 Item item=new Item(this.getName());
 
-                line=line.substring(line.indexOf('\"')+1, line.lastIndexOf('\"'));
+                line=line.substring(line.indexOf('\"') + 1, line.lastIndexOf('\"'));
                 line=line.replace(" [BS]", "; Battle Scarred");
                 line=line.replace(" [FN]", "; Factory New");
                 line=line.replace(" [FT]", "; Field-Tested");
@@ -42,7 +42,11 @@ public class WareHouse extends AbstractTradeBot {
 
                 item.name=line;
 
-                br.readLine();
+                line=br.readLine();
+                String tmp=line.substring(line.indexOf("href="));
+                line=tmp.substring(6, tmp.indexOf(" class")-1);
+                item.URL="https://www.tf2wh.com"+line;
+
 
                 line=br.readLine();
                 line=line.substring(line.indexOf('>')+1,line.lastIndexOf('<'));

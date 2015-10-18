@@ -26,7 +26,7 @@ public class Main {
         bm.Refresh();
         bm.Compare();
 
-        bm.SearchAndPrint("apoco");
+        bm.SearchAndPrint("taunt");
 
 
     }

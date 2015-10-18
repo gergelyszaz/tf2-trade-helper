@@ -5,22 +5,20 @@ package main.java.tradesearch.base;
  */
 public class Item implements Comparable<Item>{
     public static int KEY_PRICE=16;
-    public int buyPrice;
-    public int sellPrice;
+    public int buyPrice=0;
+    public int sellPrice=999999999;
     public String origin;
     public String name;
-    public int stock;
-    public int max;
+    public int stock=1;
+    public int max=2;
     public int temp; //for temporary stuff
     public boolean buy=false;
     public boolean sell=false;
+    public String URL="";
 
     public Item(String origin)
     {
         this.origin=origin;
-        stock=1; max=2;
-        buyPrice=0;
-        sellPrice=999999999;
     }
 
     @Override

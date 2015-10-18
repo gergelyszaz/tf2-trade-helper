@@ -47,6 +47,10 @@ public class Tradetf extends AbstractTradeBot {
                     Item item = new Item(getName());
                     item.buyPrice = 0;
                     item.sellPrice = 999999999;
+
+                    String tmp=itemString.substring(itemString.indexOf("url\": "));
+                    tmp=tmp.substring(7,tmp.indexOf(',')-1);
+                    item.URL="http://www.trade.tf"+tmp;
                     itemString = itemString.substring(itemString.lastIndexOf("\"price\": {"));
                     itemString = itemString.replace("\"price\": {", "");
                     String[] itemS = itemString.split("\\}, ");
@@ -59,8 +63,8 @@ public class Tradetf extends AbstractTradeBot {
                     } else {
                         items.put(item.name, item);
                     }
-                    if (buy) item.buyPrice = sum;
-                    else item.sellPrice = sum;
+                    if (buy&&item.buyPrice<sum) item.buyPrice = sum;
+                    else if(item.sellPrice>sum) item.sellPrice = sum;
 
                 }
             }

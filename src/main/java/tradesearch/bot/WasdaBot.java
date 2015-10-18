@@ -107,6 +107,7 @@ public class WasdaBot extends AbstractTradeBot {
                 item.buyPrice = buyPrice;
                 item.sellPrice = sellPrice;
                 item.stock=0;
+                item.URL="http://www.tf2outpost.com/trade/26599888";
 
                 if (!this.items.containsKey(item.name)) {
                     this.items.put(item.name, item);

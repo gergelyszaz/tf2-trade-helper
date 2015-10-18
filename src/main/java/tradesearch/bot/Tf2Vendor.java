@@ -29,15 +29,17 @@ public class Tf2Vendor extends AbstractTradeBot {
 
             if (line.contains("scrap=")) {
                 Item item=new Item(this.getName());
-
-                line=line.replace("\"","");
+                item.URL=url.toString();
+                line=line.replace("\"", "");
 
                 line=line.substring(line.indexOf("scrap="),line.indexOf("classes="));
                 String[] itemS=line.split("name=");
                 item.sellPrice=Integer.parseInt(itemS[0].replace("scrap=","").trim())*100/9;
                 String[] nameS=itemS[1].split("quality=");
 
-                item.name=(nameS[1].contains("Unique")?"":(nameS[1].trim()+" "))+nameS[0].trim();
+                item.name=(nameS[1].contains("Unique")?"":(nameS[1].trim()+" "))+nameS[0].trim()
+
+                ;
                 items.put(item.name,item);
             }
         }

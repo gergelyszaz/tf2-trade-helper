@@ -47,7 +47,20 @@ public class ScrapTf extends AbstractTradeBot {
                             item_found_state++;
 
                             item=new Item(getName());
-                            item.name=line.trim();
+                            item.name=line.trim()
+                                    .replace("Flippin", "Flippin'")
+                                    .replace("High Five","The High Five!")
+                                    .replace("Box Trot","The Box Trot")
+                                    .replace("Battin A", "Battin' a")
+                                    .replace("Boston", "The Boston")
+                                    .replace("Meet", "The Meet")
+                                    .replace("Rock Paper Scissors", "Rock, Paper, Scissors")
+                                    .replace("Proletariat", "The Proletariat")
+                                    .replace("Killer Solo", "The Killer Solo")
+                                    .replace("Schade", "The Schade")
+                                    .replace("Genuine Taunt: ", "Genuine ")
+                            ;
+                            item.URL=url.toString();
                             items.put(item.name,item);
                     }
 

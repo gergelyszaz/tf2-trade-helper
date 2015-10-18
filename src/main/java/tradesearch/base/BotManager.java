@@ -29,11 +29,11 @@ public class BotManager {
     {
         System.out.println();
         for(List<Item> l: Search(name)){
-            System.out.print(l.get(0).name+" | ");
+            System.out.println(l.get(0).name + " | ");
             for(Item i:l)
             {
-                System.out.print(
-                        i.origin+": "+i.sellPrice+"/"+i.buyPrice+" | "
+                System.out.println(
+                        i.origin + ": " + i.sellPrice + "/" + i.buyPrice + " | " + i.URL
                 );
             }
             System.out.println();
@@ -82,8 +82,12 @@ public class BotManager {
 
                                 //                      if(toBuy.sellPrice<=2400)
                            //     if (toBuy.origin != "Wasda")
-                                    System.out.println("Buy " + toBuy.stock + " " + name + " at " + toBuy.origin + " for " + toBuy.sellPrice / 100.00 + " and sell at " + toSell.origin + " for " + toSell.buyPrice / 100.00);
-
+                         {
+                             System.out.println(name);
+                            System.out.println(toBuy.origin+" (" +toBuy.stock + "): "+ toBuy.sellPrice / 100.00 +" "+ toBuy.URL );
+                             System.out.println(toSell.origin+" (" +(toSell.max-toSell.stock) + "): "+ toSell.buyPrice / 100.00+" "+toSell.URL);
+                             System.out.println();
+                         }
             }
         }
     }
